@@ -41,9 +41,10 @@ public class FileServer extends NanoHTTPD {
 		UserAgent ua = UserAgent.parseUserAgentString((String)header.get("user-agent"));
 		print("Is mobile? "+ua.getOperatingSystem().isMobileDevice());
 		String f;
-		
-		if (ua.getOperatingSystem().isMobileDevice()) {
-			f = parse("websocket_mobile.html");//Change
+		if (uri=="/pizza") {
+			f = "hello there";
+		} else if (ua.getOperatingSystem().isMobileDevice()) {
+			f = parse("websocket_mobile.html");//Changed
 		} else {
 			f = parse("websocket.html");
 		}
