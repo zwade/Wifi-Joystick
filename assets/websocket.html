@@ -1,0 +1,70 @@
+<html>
+	<div id = "type">
+	Enter Websocket URI: <input type='text' id='uri' value='ws://{{ipaddr}}'></input><input type = 'button' value='Connect' onClick='createWS()'></div><br><br>
+	
+	<br><br>
+	Output Log: <div id = 'log'></div>
+
+<script>
+	var newt = "Enter Message to Send: <input type='text' id='send' onkeydown='onkd(event)' onkeyup='onku(event)'></input>"
+	var oldt = "Enter Websocket URI: <input type='text' id='uri' value='ws://'></input><input type = 'button' value='Connect' onClick='createWS()'></div><br><br>"
+	var ws
+	uri = document.getElementById('uri')
+	text = document.getElementById('uri')
+	logger = document.getElementById('log')
+	type = document.getElementById('type')
+	sender = document.getElementById('send')
+	function createWS() {
+		ws = new WebSocket(uri.value)
+		ws.onopen = function() { 
+			blog('WebSocket Established') 
+			openConn()
+		}
+		ws.onclose = function() { 
+			blog('WebSocket Closed')
+			closeConn()
+		}
+		ws.onmessage = function(m) { blog('Message: ', m) }
+		ws.onerror = function(m) { blog('Error: ',m) }
+	}
+	function openConn() {
+		localStorage.setItem("uri", text.value)
+		type.innerHTML = newt
+	}
+	function closeConn() {
+		text.value = localStorage.getItem("uri") ? localStorage.getItem("uri") : "ws://{{ipaddr}}"
+		type.innerHTML = oldt
+	}
+	function startShift() {
+		ws.send('KDE 16')
+	}
+	function endShift() {
+		ws.send('KDU 16')
+	}
+	function onkd(event) {
+		console.log('fire!')
+		if (event.shiftKey) {startShift()}
+		txt = 'KDE '+event.keyCode
+		send.value=""
+		ws.send(txt)
+		if (event.shiftKey) {endShift()}
+		blog('Sent: '+txt)
+	} 
+	function onku(event) {
+		txt = 'KUE '+event.keyCode
+		send.value=""
+		ws.send(txt)
+		blog('Sent: '+txt)
+	} 
+	function blog(m) {
+		logger.innerHTML +="<br>"+ m;
+	}
+
+
+	function init() {
+		text.value = localStorage.getItem('uri') ? localStorage.getItem('uri') : 'ws://{{ipaddr}}';
+	}
+
+	init()
+</script>
+</html>
