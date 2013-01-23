@@ -6,7 +6,7 @@
 	Output Log: <div id = 'log'></div>
 
 <script>
-	var newt = "Enter Message to Send: <input type='text' id='send' onkeydown='onkd(event)' onkeyup='onku(event)'></input>"
+	var newt// = "Enter Message to Send: <input type='text' id='send' onkeydown='onkd(event)' onkeyup='onku(event)'></input>"
 	var oldt = "Enter Websocket URI: <input type='text' id='uri' value='ws://'></input><input type = 'button' value='Connect' onClick='createWS()'></div><br><br>"
 	var ws
 	uri = document.getElementById('uri')
@@ -29,6 +29,12 @@
 	}
 	function openConn() {
 		localStorage.setItem("uri", text.value)
+		if (!newt) {
+		    xhr = new XMLHttpRequest()
+		    xhr.open("GET", "/desktop_selector", false)
+		    xhr.send()
+		    newt = xhr.response
+		}
 		type.innerHTML = newt
 	}
 	function closeConn() {

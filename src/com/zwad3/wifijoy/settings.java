@@ -85,7 +85,7 @@ public class settings extends Activity {
     	}
     	SavePreferences("port",""+a);
     	
-    	//openSocket(ip);
+    	//openSocket(ip);hi
     	Intent i = new Intent("com.zwad3.wifijoy.GET_IP");
     	i.putExtra("port",""+a);
     	//i.setAction("com.zwad3.wifi")

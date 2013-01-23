@@ -38,7 +38,8 @@
 	}
 </style>
 <script>
-	var newt = "Enter Message to Send: <input type='text' id='send' onkeydown='onkd(event)' onkeyup='onku(event)'></input>"
+	//var newt = "Enter Message to Send: <input type='text' id='send' onkeydown='onkd(event)' onkeyup='onku(event)'></input>"
+	var newt
 	var oldt = "<div id='subtype'><span id = 'title'>Enter Websocket URI:</span><br><input type='text' id='uri' value='ws://{{ipaddr}}'></input><br><button id='conn' value='Connect' onClick='createWS()'>Connect</button></div>"
 
 	var ws
@@ -62,6 +63,12 @@
 	}
 	function openConn() {
 		localStorage.setItem("uri", text.value)
+		if (!newt) {
+		    xhr = new XMLHttpRequest()
+		    xhr.open("GET", "/desktop_selector", false)
+		    xhr.send()
+		    newt = xhr.response
+		}
 		type.innerHTML = newt
 	}
 	function closeConn() {

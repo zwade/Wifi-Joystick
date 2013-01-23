@@ -34,7 +34,7 @@ public class FileServer extends NanoHTTPD {
 		fileNames.put("/mobile", "websocket_mobile.html");
 		fileNames.put("/home", "websocket.html");
 		fileNames.put("/jquery_mobile", "jquery_mobile.js");
-		//fileNames.put("pizza", "testfile.html");
+		fileNames.put("/desktop_selector", "desktop_selector.html");
 		//fileNames.put("pizza", "testfile.html")
 		
 	}
