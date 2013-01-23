@@ -97,6 +97,8 @@ public class WifiJoy extends InputMethodService implements NeedRecieve,WifiKey {
 	@Override public boolean onKeyDown(int keyCode, KeyEvent e) {
 		//ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, 102));
 		//ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, 102));
+		//print("URGENT!!! INTERCEPTING KEY CODE: "+keyCode);
+		this.getCurrentInputConnection().sendKeyEvent(e);
 		return true;
 	}
 	@Override public boolean onKeyUp(int keyCode, KeyEvent e) {
