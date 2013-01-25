@@ -176,13 +176,13 @@ public class settings extends Activity {
     private String LoadPreferences(String mem){
       try {
     	  SharedPreferences sharedPreferences = getPreferences(0);
-    	  String s = sharedPreferences.getString(mem, "0.0.0.0");
+    	  String s = sharedPreferences.getString(mem, "8887");
     	  print(s);
     	  print("1");
     	  return s;
       } catch (Exception e) {
     	  print("2");
-    	  return "0.0.0.0";
+    	  return "8887";
       }
     }
 }
