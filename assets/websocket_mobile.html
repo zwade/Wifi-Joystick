@@ -4,13 +4,7 @@
 	</head>
 	<div id = "type">
 		<div id="subtype">
-			<span id = 'title'>Enter Websocket URI:</span> 
-			<br> 
-			<input type='text' id='uri' value='ws://{{ipaddr}}'></input>
-			<br>
-			<button id="conn" value='Connect' onClick='createWS()'>Connect</button>
 		</div>
-		<br><br>
 	</div>
 
 <style>
@@ -43,23 +37,29 @@
 	var oldt = "<div id='subtype'><span id = 'title'>Enter Websocket URI:</span><br><input type='text' id='uri' value='ws://{{ipaddr}}'></input><br><button id='conn' value='Connect' onClick='createWS()'>Connect</button></div>"
 
 	var ws
-	uri = document.getElementById('uri')
-	text = document.getElementById('uri')
-	logger = document.getElementById('log')
-	type = document.getElementById('type')
-	sender = document.getElementById('send')
+	uri  = {{ipaddr}} //= document.getElementById('uri')
+	//text = document.getElementById('uri')
+	//logger = document.getElementById('log')
+	//type = document.getElementById('type')
+	//sender = document.getElementById('send')
 	function createWS() {
-		ws = new WebSocket(uri.value)
-		ws.onopen = function() { 
+		ws = new WebSocket(uri.)
+		ws.onopen = function() {
+			ws.hasOpened = true
 			blog('WebSocket Established') 
 			openConn()
 		}
-		ws.onclose = function() { 
-			blog('WebSocket Closed')
-			closeConn()
-		}
 		ws.onmessage = function(m) { blog('Message: ', m) }
 		ws.onerror = function(m) { blog('Error: ',m) }
+		ws.onclose = function() { 
+			if (ws.hasOpened) {
+				blog('WebSocket Closed')
+				alert("Connection Lost")
+				closeConn()
+			} else {
+				alert("Connection Could Not Be Established")
+			}
+		} 
 	}
 	function openConn() {
 		localStorage.setItem("uri", text.value)
@@ -103,7 +103,8 @@
 
 
 	function init() {
-		text.value = localStorage.getItem('uri') ? localStorage.getItem('uri') : 'ws://{{ipaddr}}';
+		//text.value = localStorage.getItem('uri') ? localStorage.getItem('uri') : 'ws://{{ipaddr}}';
+		
 	}
 
 	init()
