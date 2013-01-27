@@ -1,106 +1,158 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical" >
-	
+    android:layout_height="fill_parent" >
+
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:paddingTop="40dp"
-    	android:orientation="horizontal" >
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="16dp"
+	    android:paddingRight="16dp"
+	    android:orientation="vertical" >	
+	
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:paddingTop="40dp"
+    		android:orientation="horizontal" >
+	
+			<TextView
+	        	android:id="@+id/textView1"
+	        	android:layout_width="0dp"
+	        	android:layout_weight="1"
+	        	android:layout_height="wrap_content"
+	        	android:text="Your IP address:" />
+	    	
+	    	<TextView
+	    	    android:id="@+id/ipaddr"
+	    	    android:text="Not Connected to the Interwebs"
+	    	    android:layout_width="0dp"
+    		    android:layout_weight="1"
+    		    android:layout_height="wrap_content"
+    		    android:textAppearance="?android:attr/textAppearanceSmall" />
+    		
+		</LinearLayout>
 
 		<TextView
-        	android:id="@+id/textView1"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:text="Your IP address:" />
-    	
-    	<TextView
-    	    android:id="@+id/ipaddr"
-    	    android:text="Not Connected to the Interwebs"
-    	    android:layout_width="0dp"
-    	    android:layout_weight="1"
-    	    android:layout_height="wrap_content"
-    	    android:textAppearance="?android:attr/textAppearanceSmall" />
-    	
-	</LinearLayout>
-
-	<TextView
-	    android:id="@+id/textInfo1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:paddingTop="40dp"
-	    android:text="Choose a port to open the server on. The default is 8887" />
+		    android:id="@+id/textInfo1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingTop="40dp"
+		    android:text="Choose a port to open the server on. The default is 8887 (Note, You cannot set it to a port less than 1024)" />
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="20dp"
+	    	android:paddingTop="20dp"
+	    	android:orientation="horizontal" >
+		
+	    	<TextView
+	    	    android:id="@+id/portinfo"
+	    	    android:layout_width="0dp"
+	    	    android:layout_weight="1"
+	    	    android:layout_height="wrap_content"
+	    	    android:text="Opened Port:"/>
 	
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:paddingLeft="20dp"
-    	android:paddingTop="20dp"
-    	android:orientation="horizontal" >
+	    	<!-- <EditText
+	    	    android:id="@+id/port"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginTop="120dp"
+	    	    android:layout_-->
+	    	<EditText
+		        android:id="@+id/port"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:inputType="number" >
+		    </EditText>
+		</LinearLayout>
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="20dp"
+	    	android:paddingTop="20dp"
+	    	android:orientation="horizontal" >
+	    	
+	    	<TextView
+	    	    android:id="@+id/tcpinfo"
+	    	    android:layout_width="0dp"
+	    	    android:layout_weight="1"
+	    	    android:layout_height="wrap_content"
+	    	    android:text="TCP Server (On?):"/>
+	    	<Button
+				android:id="@+id/tcpcheck"
+		    	android:layout_width="0dp"
+		    	android:paddingTop="20dp"
+		    	android:layout_height="wrap_content"
+		    	android:layout_weight="1"
+		    	android:onClick="buttonConnect" 
+		    	android:text="Click To Setup"/>
+	    </LinearLayout>
+		<TextView
+		    android:id="@+id/textInfotcp"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:paddingTop="40dp"
+		    android:text="Choose a port to open HTTP server on. The default is 8081 (Note, You cannot set it to a port less than 1024, and it must be different from the one above)" />
 	
-    	<TextView
-    	    android:id="@+id/portinfo"
-    	    android:layout_width="0dp"
-    	    android:layout_weight="1"
-    	    android:layout_height="wrap_content"
-    	    android:text="Opened Port:"/>
-
-    	<!-- <EditText
-    	    android:id="@+id/port"
-    	    android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-    	    android:layout_marginTop="120dp"
-    	    android:layout_-->
-    	<EditText
-	        android:id="@+id/port"
-	        android:layout_width="0dp"
-	        android:layout_weight="1"
-	        android:layout_height="wrap_content"
-	        android:inputType="number" >
-	    </EditText>
-	</LinearLayout>
-    <Button
-		android:id="@+id/button1"
-	 	style="?android:attr/buttonStyleSmall"
-	    android:layout_width="fill_parent"
-	    android:paddingTop="20dp"
-	    android:layout_height="80dp"
-	    android:onClick="buttonConnect"
-	    android:text="Connect" />
-    
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:paddingLeft="20dp"
-    	android:paddingTop="20dp"
-    	android:orientation="horizontal" >
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="20dp"
+	    	android:paddingTop="20dp"
+	    	android:orientation="horizontal" >
+		
+	    	<TextView
+	    	    android:id="@+id/portinfohttp"
+	    	    android:layout_width="0dp"
+	    	    android:layout_weight="1"
+	    	    android:layout_height="wrap_content"
+	    	    android:text="Opened Port:"/>
+	
+	    	<!-- <EditText
+	    	    android:id="@+id/port"
+	    	    android:layout_width="wrap_content"
+	    	    android:layout_height="wrap_content"
+	    	    android:layout_marginTop="120dp"
+	    	    android:layout_-->
+	    	<EditText
+		        android:id="@+id/porthttp"
+		        android:layout_width="0dp"
+		        android:layout_weight="1"
+		        android:layout_height="wrap_content"
+		        android:inputType="number" >
+		    </EditText>
+		</LinearLayout>
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="20dp"
+	    	android:paddingTop="20dp"
+	    	android:orientation="horizontal" >
+	    	
+	    	<TextView
+	    	    android:id="@+id/httpinfo"
+	    	    android:layout_width="0dp"
+	    	    android:layout_weight="1"
+	    	    android:layout_height="wrap_content"
+	    	    android:text="HTTP Server (On?):"/>
+	
+	    	<CheckBox
+   		 	    android:id="@+id/http"
+    		    android:layout_width="0dp"
+    		    android:layout_height="wrap_content"
+    		    android:layout_weight="1"
+    		    android:onClick="httpChange" />
     	
-    	<TextView
-    	    android:id="@+id/httpinfo"
-    	    android:layout_width="0dp"
-    	    android:layout_weight="1"
-    	    android:layout_height="wrap_content"
-    	    android:text="HTTP Server (On?):"/>
-
-    	<CheckBox
-    	    android:id="@+id/http"
-    	    android:layout_width="0dp"
-    	    android:layout_height="wrap_content"
-    	    android:layout_weight="1"
-    	    android:onClick="httpChange" />
-    	
-    </LinearLayout>
+    	</LinearLayout>
         
-	<EditText
-    	android:ems="10"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:width="100dp"
-        android:inputType="textNoSuggestions" />
-
-</LinearLayout>
+		<EditText
+    		android:ems="10"
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="wrap_content"
+    	    android:width="100dp"
+    	    android:inputType="textNoSuggestions" />
+	
+	</LinearLayout>
+</ScrollView>	

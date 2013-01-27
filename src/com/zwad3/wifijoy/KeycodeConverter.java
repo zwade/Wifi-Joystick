@@ -52,7 +52,7 @@ public final class KeycodeConverter {
       //case 35: return WiFiInputMethod.KEY_END;
       //case 17: return WiFiInputMethod.KEY_CONTROL;
       //ase 46: return WiFiInputMethod.KEY_DEL;
-      default: return KeyEvent.KEYCODE_SPACE;
+      default: return code;
     }
 
   }
